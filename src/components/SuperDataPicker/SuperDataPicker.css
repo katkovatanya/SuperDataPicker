@@ -1,0 +1,131 @@
+.sdp {
+	position: relative;
+}
+
+.sdp__wrapper {
+	display: flex;
+	border: 1px solid black;
+	border-radius: 5px;
+	justify-content: space-between;
+	align-items: center;
+	column-gap: 1%;
+}
+
+.calendar__button {
+	border: none;
+	border-radius: 3px 0 0 3px;
+	border-right: 1px solid black;
+	transition: 0.3s;
+	position: relative;
+}
+
+.calendar__button svg {
+	transition: 0.3s;
+}
+
+
+.calendar__button:hover {
+	background-color: darkgray;
+	border-right: 1px solid black;
+}
+
+.calendar__button:hover svg {
+	fill: white;
+}
+
+.calendar__button:active {
+	background-color: darkgray;
+	border: none;
+	border-right: 1px solid black;
+}
+
+.interval__button {
+	transition: 0.3s;
+	border: none;
+	border-radius: 0px;
+	flex-grow: 1;
+	max-width: 50%;
+}
+
+.interval__button:hover {
+	background-color: darkgray;
+	color: white;
+}
+
+.update-button {
+	border: none;
+	border-radius: 0 3px 3px 0;
+	border-left: 1px solid black;
+	background-color: rgb(50, 95, 168);
+	color: white;
+	transition: 0.3s;
+}
+
+.update-button:hover {
+	background-color: rgb(24, 53, 100);
+	border-left: 1px solid black;
+}
+
+.interval-selection {
+	display: flex;
+	justify-content: space-between;
+	column-gap: 5px;
+}
+
+.apply-button {
+	border: none;
+	border-radius: 3px;
+	background-color: rgb(50, 95, 168);
+	color: white;
+	transition: 0.3s;
+}
+
+.apply-button:hover {
+	background-color: rgb(24, 53, 100);
+}
+
+.dropdown-menu {
+	position: absolute;
+	top: 105%;
+	left: 0;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid black;
+	padding: 5px 5px 25px;
+	width: 70%;
+	opacity: 0;
+	visibility: hidden;
+	max-height: 0;
+	overflow: hidden;
+	transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+.dropdown-menu_open {
+	opacity: 1;
+	visibility: visible;
+	max-height: max-content;
+}
+
+.dropdown-menu__buttons {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+	width: 100%;
+}
+
+.dropdown-menu__button {
+	background: none;
+	padding: 0;
+	margin: 0;
+	border: none;
+	color: rgb(50, 95, 168);
+}
+
+.dropdown-menu__button:hover {
+	text-decoration: underline;
+}
+
+button:focus {
+	outline: none;
+}
