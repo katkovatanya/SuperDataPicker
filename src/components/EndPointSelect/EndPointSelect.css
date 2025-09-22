@@ -1,0 +1,28 @@
+.end-point-select__tabs {
+	display: flex;
+	border-bottom: 1px solid #ccc;
+}
+
+.end-point-select__tab {
+	flex: 1;
+	padding: 10px;
+	cursor: pointer;
+	background-color: #fff;
+	border: none;
+	border-bottom: 2px solid transparent;
+	transition: background-color 0.3s;
+}
+
+.end-point-select__tab:hover {
+	background-color: #eee;
+}
+
+.end-point-select__tab_active {
+	background-color: #ddd;
+	border-bottom-color: rgb(50, 95, 168);
+	;
+}
+
+.end-point-select__tab-content {
+	margin-top: 20px;
+}
