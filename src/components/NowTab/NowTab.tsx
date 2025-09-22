@@ -1,6 +1,7 @@
+import type { setDateProps } from "../../shared/types";
 import "./NowTab.css";
 
-const NowTab: React.FC = () => {
+const NowTab: React.FC<setDateProps> = ({ setDate, date }) => {
   return (
     <div className="now-tab">
       <p>

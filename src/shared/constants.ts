@@ -1,3 +1,5 @@
+import type { TabType } from "./types";
+
 export const itemsDirection = ["Last", "Next"];
 export const unitsOfMeasurement = [
   "Seconds",
@@ -52,3 +54,5 @@ export const intervalOptions = [
   "Months from now",
   "Years from now",
 ];
+
+export const TABS: TabType[] = ["absolute", "relative", "now"];

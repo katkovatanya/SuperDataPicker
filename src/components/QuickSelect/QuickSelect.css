@@ -1,0 +1,36 @@
+.interval-selection {
+	display: flex;
+	justify-content: space-between;
+	column-gap: 5px;
+}
+
+.apply-button {
+	border: none;
+	border-radius: 3px;
+	background-color: rgb(50, 95, 168);
+	color: white;
+	transition: 0.3s;
+}
+
+.apply-button:hover {
+	background-color: rgb(24, 53, 100);
+}
+
+.dropdown-menu__buttons {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+	width: 100%;
+}
+
+.dropdown-menu__button {
+	background: none;
+	padding: 0;
+	margin: 0;
+	border: none;
+	color: rgb(50, 95, 168);
+}
+
+.dropdown-menu__button:hover {
+	text-decoration: underline;
+}

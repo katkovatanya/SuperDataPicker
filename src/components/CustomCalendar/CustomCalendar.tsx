@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { months, weekDays } from "../../shared/constants";
 import {
   generateTimeSlots,
@@ -8,15 +8,16 @@ import {
 } from "../../shared/utils";
 import "./CustomCalendar.css";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import type { setDateProps } from "../../shared/types";
 
-const CustomCalendar: React.FC = () => {
-  const today = new Date();
+const CustomCalendar: React.FC<setDateProps> = ({ setDate, date }) => {
   const years = getYears();
   const timeSlots = generateTimeSlots();
 
-  const [year, setYear] = useState(today.getFullYear());
-  const [month, setMonth] = useState(today.getMonth());
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const initialDate = date || new Date();
+  const [year, setYear] = useState(initialDate.getFullYear());
+  const [month, setMonth] = useState(initialDate.getMonth());
+  const [selectedDate, setSelectedDate] = useState<Date | null>(date || null);
   const [selectedTime, setSelectedTime] = useState<string>("00:00");
 
   const daysInMonth = getDaysInMonth(year, month);
@@ -39,6 +40,14 @@ const CustomCalendar: React.FC = () => {
       setYear((y) => y + 1);
     } else setMonth((m) => m + 1);
   };
+
+  useEffect(() => {
+    if (date) {
+      setYear(date.getFullYear());
+      setMonth(date.getMonth());
+      setSelectedDate(date);
+    }
+  }, [date]);
 
   return (
     <div className="calendar__wrapper">
@@ -88,7 +97,12 @@ const CustomCalendar: React.FC = () => {
             date ? (
               <div
                 key={date.toISOString()}
-                onClick={() => setSelectedDate(date)}
+                onClick={() => {
+                  const newDate = new Date(selectedDate || new Date());
+                  newDate.setFullYear(year, month, date.getDate());
+                  setSelectedDate(newDate);
+                  setDate(newDate);
+                }}
                 className={`calendar-day ${
                   selectedDate &&
                   selectedDate.getFullYear() === date.getFullYear() &&
@@ -112,7 +126,14 @@ const CustomCalendar: React.FC = () => {
           {timeSlots.map((time) => (
             <button
               key={time}
-              onClick={() => setSelectedTime(time)}
+              onClick={() => {
+                const [hours, minutes] = time.split(":").map(Number);
+                const newDate = new Date(selectedDate || new Date());
+                newDate.setHours(hours, minutes);
+                setSelectedTime(time);
+                setSelectedDate(newDate);
+                setDate(newDate);
+              }}
               className={`calendar__time-slot ${
                 selectedTime === time ? "calendar__time-slot_active" : ""
               }`}

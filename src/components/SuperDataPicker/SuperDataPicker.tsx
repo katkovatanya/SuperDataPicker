@@ -3,30 +3,12 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { LuMoveRight } from "react-icons/lu";
 import "./SuperDataPicker.css";
 import { useRef, useState } from "react";
-import CustomDropdown from "../CustomDropdown/CustomDropdown";
-import NumberInput from "../NumberInput/NumberInput";
 import EndPointSelect from "../EndPointSelect/EndPointSelect";
-import {
-  buttons,
-  itemsDirection,
-  unitsOfMeasurement,
-} from "../../shared/constants";
+import { useStore } from "../../store/store";
+import { QuickSelect } from "../QuickSelect/QuickSelect";
 
 function SuperDataPicker() {
-  const [start, setStart] = useState<Date>(() => {
-    const date = new Date();
-    date.setMinutes(date.getMinutes() - 30);
-    date.setSeconds(0);
-    date.setMilliseconds(0);
-    return date;
-  });
-
-  const [end, setEnd] = useState<Date>(() => {
-    const date = new Date();
-    date.setSeconds(0);
-    date.setMilliseconds(0);
-    return date;
-  });
+  const { start, end, setStart, setEnd } = useStore();
   const [activeDropdown, setActiveDropdown] = useState<
     "calendar" | "start" | "end" | null
   >(null);
@@ -103,21 +85,7 @@ function SuperDataPicker() {
           left: dropdownPosition,
         }}
       >
-        <h2>Quick select</h2>
-        <div className="interval-selection">
-          <CustomDropdown options={itemsDirection} />
-          <NumberInput />
-          <CustomDropdown options={unitsOfMeasurement} />
-          <button className="apply-button">Apply</button>
-        </div>
-        <h2>Commonly used</h2>
-        <div className="dropdown-menu__buttons">
-          {buttons.map((label, index) => (
-            <button key={index} className="dropdown-menu__button">
-              {label}
-            </button>
-          ))}
-        </div>
+        <QuickSelect />
       </div>
       <div
         className={`dropdown-menu ${
@@ -127,7 +95,7 @@ function SuperDataPicker() {
           left: dropdownPosition,
         }}
       >
-        <EndPointSelect />
+        <EndPointSelect date={start} setDate={setStart} />
       </div>
       <div
         className={`dropdown-menu ${
@@ -137,7 +105,7 @@ function SuperDataPicker() {
           left: dropdownPosition,
         }}
       >
-        <EndPointSelect />
+        <EndPointSelect date={end} setDate={setEnd} />
       </div>
     </div>
   );
