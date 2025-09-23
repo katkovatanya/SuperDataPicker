@@ -38,31 +38,24 @@ const RelativeTab: React.FC<setDateProps> = ({ setDate, date }) => {
           newDate.setFullYear(currentDate.getFullYear() - numberValue);
           break;
         case "Seconds from now":
-          console.log(dropdownValue);
           newDate.setSeconds(currentDate.getSeconds() + numberValue);
           break;
         case "Minutes from now":
-          console.log(dropdownValue);
           newDate.setMinutes(currentDate.getMinutes() + numberValue);
           break;
         case "Hours from now":
-          console.log(dropdownValue);
           newDate.setHours(currentDate.getHours() + numberValue);
           break;
         case "Days from now":
-          console.log(dropdownValue);
           newDate.setDate(currentDate.getDate() + numberValue);
           break;
         case "Weeks from now":
-          console.log(dropdownValue);
           newDate.setDate(currentDate.getDate() + numberValue * 7);
           break;
         case "Months from now":
-          console.log(dropdownValue);
           newDate.setMonth(currentDate.getMonth() + numberValue);
           break;
         case "Years from now":
-          console.log(dropdownValue);
           newDate.setFullYear(currentDate.getFullYear() + numberValue);
           break;
         default:
