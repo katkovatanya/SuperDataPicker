@@ -15,3 +15,7 @@
 - TypeScript
 - Zustand
 - React Icons
+
+## Ссылка на проект
+
+[https://katkovatanya.github.io/SuperDataPicker/](https://katkovatanya.github.io/SuperDataPicker/)
