@@ -1,0 +1,11 @@
+.custom-button {
+	border: none;
+	border-radius: 3px;
+	background-color: rgb(50, 95, 168);
+	color: white;
+	transition: 0.3s;
+}
+
+.custom-button:hover {
+	background-color: rgb(24, 53, 100);
+}

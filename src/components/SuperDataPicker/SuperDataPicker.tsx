@@ -45,8 +45,6 @@ function SuperDataPicker() {
           calendarButtonRef.current.getBoundingClientRect().left;
         const rect = buttonRef.current.getBoundingClientRect();
         const left = rect.left - startComponent;
-        console.log(left);
-
         setDropdownPosition(left);
       }
     }
@@ -85,7 +83,7 @@ function SuperDataPicker() {
           left: dropdownPosition,
         }}
       >
-        <QuickSelect />
+        <QuickSelect date={start} setDate={setStart} />
       </div>
       <div
         className={`dropdown-menu ${

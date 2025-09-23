@@ -1,14 +1,20 @@
 import React, { useState, useRef, useEffect } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import "./CustomDropdown.css";
+import type { IntervalOption } from "../../shared/types";
 
-interface CustomDropdownProps {
-  options: string[];
-}
+export type CustomDropdownProps = {
+  options: readonly IntervalOption[];
+  value: IntervalOption | "";
+  onChange: (value: IntervalOption) => void;
+};
 
-const CustomDropdown: React.FC<CustomDropdownProps> = ({ options }) => {
+const CustomDropdown: React.FC<CustomDropdownProps> = ({
+  options,
+  value,
+  onChange,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<string>(options[0] || "");
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -26,14 +32,14 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({ options }) => {
   }, []);
 
   const handleSelect = (option: string) => {
-    setSelected(option);
+    onChange(option);
     setIsOpen(false);
   };
 
   return (
     <div ref={ref} className="dropdown">
       <button className="dropdown__button" onClick={() => setIsOpen(!isOpen)}>
-        {selected}
+        {value}
         <MdKeyboardArrowDown />
       </button>
       {isOpen && (

@@ -30,15 +30,68 @@ const CustomCalendar: React.FC<setDateProps> = ({ setDate, date }) => {
   const prevMonth = () => {
     if (month === 0) {
       setMonth(11);
-      setYear((y) => y - 1);
-    } else setMonth((m) => m - 1);
+      setYear((y) => {
+        const newYear = y - 1;
+        updateSelectedDate(newYear, 11);
+        return newYear;
+      });
+    } else {
+      setMonth((m) => {
+        const newMonth = m - 1;
+        updateSelectedDate(year, newMonth);
+        return newMonth;
+      });
+    }
   };
 
   const nextMonth = () => {
     if (month === 11) {
       setMonth(0);
-      setYear((y) => y + 1);
-    } else setMonth((m) => m + 1);
+      setYear((y) => {
+        const newYear = y + 1;
+        updateSelectedDate(newYear, 0);
+        return newYear;
+      });
+    } else {
+      setMonth((m) => {
+        const newMonth = m + 1;
+        updateSelectedDate(year, newMonth);
+        return newMonth;
+      });
+    }
+  };
+
+  const updateSelectedDate = (newYear: number, newMonth: number) => {
+    const newDate = new Date(selectedDate || new Date());
+    newDate.setFullYear(newYear, newMonth);
+    setSelectedDate(newDate);
+    setDate(newDate);
+  };
+
+  const handleDateClick = (date: Date | null) => {
+    if (!date) return;
+    const newDate = new Date(selectedDate || new Date());
+    newDate.setFullYear(year, month, date.getDate());
+    setSelectedDate(newDate);
+    setDate(newDate);
+  };
+
+  const handleTimeClick = (time: string) => {
+    const [hours, minutes] = time.split(":").map(Number);
+    const newDate = new Date(selectedDate || new Date());
+    newDate.setHours(hours, minutes);
+    setSelectedTime(time);
+    setSelectedDate(newDate);
+    setDate(newDate);
+  };
+
+  const isSelectedDate = (date: Date) => {
+    return (
+      selectedDate &&
+      selectedDate.getFullYear() === date.getFullYear() &&
+      selectedDate.getMonth() === date.getMonth() &&
+      selectedDate.getDate() === date.getDate()
+    );
   };
 
   useEffect(() => {
@@ -97,19 +150,9 @@ const CustomCalendar: React.FC<setDateProps> = ({ setDate, date }) => {
             date ? (
               <div
                 key={date.toISOString()}
-                onClick={() => {
-                  const newDate = new Date(selectedDate || new Date());
-                  newDate.setFullYear(year, month, date.getDate());
-                  setSelectedDate(newDate);
-                  setDate(newDate);
-                }}
+                onClick={() => handleDateClick(date)}
                 className={`calendar-day ${
-                  selectedDate &&
-                  selectedDate.getFullYear() === date.getFullYear() &&
-                  selectedDate.getMonth() === date.getMonth() &&
-                  selectedDate.getDate() === date.getDate()
-                    ? "calendar-day_selected"
-                    : ""
+                  isSelectedDate(date) ? "calendar-day_selected" : ""
                 }`}
               >
                 {date.getDate()}
@@ -126,14 +169,7 @@ const CustomCalendar: React.FC<setDateProps> = ({ setDate, date }) => {
           {timeSlots.map((time) => (
             <button
               key={time}
-              onClick={() => {
-                const [hours, minutes] = time.split(":").map(Number);
-                const newDate = new Date(selectedDate || new Date());
-                newDate.setHours(hours, minutes);
-                setSelectedTime(time);
-                setSelectedDate(newDate);
-                setDate(newDate);
-              }}
+              onClick={() => handleTimeClick(time)}
               className={`calendar__time-slot ${
                 selectedTime === time ? "calendar__time-slot_active" : ""
               }`}

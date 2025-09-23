@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import "./NumberInput.css";
 
-const NumberInput: React.FC = () => {
-  const [value, setValue] = useState<number>(0);
+export type NumberInputProps = {
+  value: number;
+  onChange: (value: number) => void;
+};
 
+const NumberInput: React.FC<NumberInputProps> = ({ value, onChange }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Math.max(0, Math.floor(Number(e.target.value)));
-    setValue(newValue);
+    onChange(newValue);
   };
 
   return (
