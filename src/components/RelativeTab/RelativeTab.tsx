@@ -11,6 +11,9 @@ const RelativeTab: React.FC<setDateProps> = ({ setDate, date }) => {
   const [dropdownValue, setDropdownValue] = useState<IntervalOption>(
     intervalOptions[0]
   );
+  const [roundToDay, setRoundToDay] = useState(false);
+
+  const toggleRoundToDay = () => setRoundToDay((prev) => !prev);
 
   useEffect(() => {
     if (numberValue && dropdownValue) {
@@ -69,6 +72,16 @@ const RelativeTab: React.FC<setDateProps> = ({ setDate, date }) => {
     setCurrentDate(new Date());
   }, []);
 
+  useEffect(() => {
+    if (roundToDay) {
+      const newDate = new Date();
+      newDate.setHours(23, 59, 59, 999);
+      setCurrentDate(newDate);
+    } else {
+      setCurrentDate(new Date());
+    }
+  }, [roundToDay]);
+
   return (
     <div className="relative-tab__wrapper">
       <div className="relative-tab">
@@ -83,6 +96,15 @@ const RelativeTab: React.FC<setDateProps> = ({ setDate, date }) => {
         <span>Start date</span>
         <p>{currentDate.toLocaleString()}</p>
       </div>
+      <label className="toggle-switch">
+        <input
+          type="checkbox"
+          checked={roundToDay}
+          onChange={toggleRoundToDay}
+        />
+        <span className="slider"></span>
+        Round to the day
+      </label>
     </div>
   );
 };

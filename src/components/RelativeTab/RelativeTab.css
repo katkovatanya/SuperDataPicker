@@ -19,3 +19,46 @@
 	border-radius: 5px;
 	padding: 0 5px;
 }
+
+.toggle-switch {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	user-select: none;
+	margin-top: 10px;
+	font-weight: 500;
+}
+
+.toggle-switch input {
+	display: none;
+}
+
+.slider {
+	position: relative;
+	width: 40px;
+	height: 20px;
+	background-color: #ccc;
+	border-radius: 20px;
+	margin-right: 10px;
+	transition: background-color 0.3s;
+}
+
+.slider::before {
+	content: "";
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	left: 2px;
+	top: 2px;
+	background-color: white;
+	border-radius: 50%;
+	transition: transform 0.3s;
+}
+
+input:checked+.slider {
+	background-color: #007bff;
+}
+
+input:checked+.slider::before {
+	transform: translateX(20px);
+}
