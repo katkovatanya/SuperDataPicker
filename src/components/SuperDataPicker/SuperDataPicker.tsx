@@ -83,7 +83,7 @@ function SuperDataPicker() {
           left: dropdownPosition,
         }}
       >
-        <QuickSelect date={start} setDate={setStart} />
+        <QuickSelect setStart={setStart} setEnd={setEnd} />
       </div>
       <div
         className={`dropdown-menu ${

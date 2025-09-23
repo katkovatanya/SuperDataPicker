@@ -5,8 +5,13 @@ import type {
 } from "./constants";
 
 export interface setDateProps {
-  setDate: (date: Date) => void;
   date: Date;
+  setDate: (date: Date) => void;
+}
+
+export interface setIntrvalProps {
+  setStart: (date: Date) => void;
+  setEnd: (date: Date) => void;
 }
 
 export type TabType = "absolute" | "relative" | "now";

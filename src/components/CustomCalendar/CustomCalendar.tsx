@@ -18,7 +18,7 @@ const CustomCalendar: React.FC<setDateProps> = ({ setDate, date }) => {
   const [year, setYear] = useState(initialDate.getFullYear());
   const [month, setMonth] = useState(initialDate.getMonth());
   const [selectedDate, setSelectedDate] = useState<Date | null>(date || null);
-  const [selectedTime, setSelectedTime] = useState<string>("00:00");
+  const [selectedTime, setSelectedTime] = useState<string>("");
 
   const daysInMonth = getDaysInMonth(year, month);
   const firstDayIdx = getFirstDayOfMonth(year, month);
@@ -80,6 +80,7 @@ const CustomCalendar: React.FC<setDateProps> = ({ setDate, date }) => {
     const [hours, minutes] = time.split(":").map(Number);
     const newDate = new Date(selectedDate || new Date());
     newDate.setHours(hours, minutes);
+    newDate.setSeconds(0);
     setSelectedTime(time);
     setSelectedDate(newDate);
     setDate(newDate);
