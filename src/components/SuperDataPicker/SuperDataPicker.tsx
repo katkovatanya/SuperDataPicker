@@ -73,7 +73,6 @@ function SuperDataPicker() {
           onClick={() => toggleDropdown("end")}
           ref={endButtonRef}
         >{`${end.toLocaleString()}`}</button>
-        <button className="update-button">Refresh</button>
       </div>
       <div
         className={`dropdown-menu ${
@@ -93,7 +92,7 @@ function SuperDataPicker() {
           left: dropdownPosition,
         }}
       >
-        <EndPointSelect date={start} setDate={setStart} />
+        <EndPointSelect date={start} setDate={setStart} label="Start date" />
       </div>
       <div
         className={`dropdown-menu ${
@@ -103,7 +102,7 @@ function SuperDataPicker() {
           left: dropdownPosition,
         }}
       >
-        <EndPointSelect date={end} setDate={setEnd} />
+        <EndPointSelect date={end} setDate={setEnd} label="End date" />
       </div>
     </div>
   );

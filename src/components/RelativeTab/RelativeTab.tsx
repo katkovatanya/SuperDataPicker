@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { intervalOptions } from "../../shared/constants";
-import type { IntervalOption, setDateProps } from "../../shared/types";
+import type { IntervalOption, RelativeTabProps } from "../../shared/types";
 import CustomDropdown from "../CustomDropdown/CustomDropdown";
 import NumberInput from "../NumberInput/NumberInput";
 import "./RelativeTab.css";
 
-const RelativeTab: React.FC<setDateProps> = ({ setDate, date }) => {
+const RelativeTab: React.FC<RelativeTabProps> = ({ setDate, date, label }) => {
   const [currentDate, setCurrentDate] = useState<Date>(date);
   const [numberValue, setNumberValue] = useState<number>(0);
   const [dropdownValue, setDropdownValue] = useState<IntervalOption>(
@@ -93,7 +93,7 @@ const RelativeTab: React.FC<setDateProps> = ({ setDate, date }) => {
         />
       </div>
       <div className="relative-tab__today">
-        <span>Start date</span>
+        <span>{label}</span>
         <p>{currentDate.toLocaleString()}</p>
       </div>
       <label className="toggle-switch">

@@ -9,6 +9,10 @@ export interface setDateProps {
   setDate: (date: Date) => void;
 }
 
+export interface RelativeTabProps extends setDateProps {
+  label: string;
+}
+
 export interface setIntrvalProps {
   setStart: (date: Date) => void;
   setEnd: (date: Date) => void;

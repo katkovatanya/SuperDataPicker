@@ -8,7 +8,10 @@
 	border-radius: 5px;
 	justify-content: space-between;
 	align-items: center;
-	column-gap: 1%;
+}
+
+.interval__button:last-child {
+	border-radius: 0 3px 3px 0;
 }
 
 .calendar__button {

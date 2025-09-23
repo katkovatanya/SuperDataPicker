@@ -4,9 +4,13 @@ import CustomCalendar from "../CustomCalendar/CustomCalendar";
 import RelativeTab from "../RelativeTab/RelativeTab";
 import NowTab from "../NowTab/NowTab";
 import { TABS } from "../../shared/constants";
-import type { setDateProps, TabType } from "../../shared/types";
+import type { RelativeTabProps, TabType } from "../../shared/types";
 
-const EndPointSelect: React.FC<setDateProps> = ({ setDate, date }) => {
+const EndPointSelect: React.FC<RelativeTabProps> = ({
+  setDate,
+  date,
+  label,
+}) => {
   const [activeTab, setActiveTab] = useState<TabType>("absolute");
 
   return (
@@ -32,9 +36,9 @@ const EndPointSelect: React.FC<setDateProps> = ({ setDate, date }) => {
           </div>
         )}
         {activeTab === "relative" && (
-          <RelativeTab date={date} setDate={setDate} />
+          <RelativeTab date={date} setDate={setDate} label={label} />
         )}
-        {activeTab === "now" && <NowTab date={date} setDate={setDate} />}
+        {activeTab === "now" && <NowTab setDate={setDate} />}
       </div>
     </div>
   );
